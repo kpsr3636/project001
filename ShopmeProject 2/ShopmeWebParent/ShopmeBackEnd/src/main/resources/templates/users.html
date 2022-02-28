@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+	    <link rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+
+	<title> home shopme admin</title>
+	
+	<link rel="stylesheet" type ="text/css" th:href="@{/style.css}" />
+
+
+
+</head>
+
+<body>
+
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+	<div class="container-fluid">
+	
+	 
+	
+	
+	
+	
+
+		<div>
+			<h2>Manage users</h2>
+			 <a th:href="@{/users/new}"> create New User </a>
+			 
+			 <div th:if="${message !=null}" class="alert alert-success text-center"> 
+			   [[${message}]]
+			 
+			 </div>
+
+		</div>
+
+		<div class=text-center>
+
+			<table class="table table-responsive-xL">
+
+				<thead class="thead-dark">
+
+					<th> User ID</th>
+
+					<th> pHOTOS</th>
+
+					<th>E-mail</th>
+
+					<th> first NAME</th>
+
+					<th> LAST NAME</th>
+
+					<th> ROLES</th>
+
+					<th> ENABLED</th>
+
+					<th></th>
+
+				</thead>
+
+				<tbody>
+					<tr th:each="user :${listUsers}">
+
+						<td>[[${user.userId}]]</td>
+						<td> <span class="fas fa-portrait fa-3x icon-green"> </span ></td>
+						<td>[[${user.email}]]</td>
+						<td>[[${user.firstName}]]</td>
+						<td>[[${user.lastName}]]</td>
+						<td>[[${user.roles}]]</td>
+                         <td>
+                         <a th:if="${user.enanled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a >
+                         <a th:if="${user.enanled == false}" class="fas fa-check-circle fa-2x icon-dark" href=""></a >
+
+                         </td>
+						
+
+                         <td>  
+                           <a class="fas fa-edit fa-1x icon-green" th:href="@{'/users/edit/' + ${user.userId}}" title ="Edit thid user"> </a>|
+                               
+                            <a class="fas fa-trash fa-1x icon-dark" th:href="@{'/users/delete/' + ${user.userId}}" title ="Delete this user"> </a>  
+                         
+                         </td>
+
+
+					</tr>
+
+				</tbody>
+
+			</table>
+
+		</div>
+		  <div class="text-center"> <p> Shopme Control Panel - Copyright &copy; Shopme</p>
+		  
+		  </div>
+
+	</div>
+
+
+</script >
+
+</body>
+
+</html>
